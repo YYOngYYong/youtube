@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
 
-import "./app.css";
+import Searchbar from "./components/searchbar/searchbar";
 import VideoList from "./components/video_list/video_list";
+import styles from "./app.module.css";
 
-function App() {
+function App({ youtube }) {
   const [videos, setVideos] = useState([]);
-
+  const search = (query) => {
+    youtube
+      .search(query) //
+      .then((videos) => setVideos(videos));
+  };
   useEffect(() => {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://www.googleapis.com/youtube/v3/videos?&part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyA8I9S9IvfxTCqeXVrXrGu7H2deWNDGUrE",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setVideos(result.items))
-      .catch((error) => console.log("error", error));
+    youtube
+      .mostPopular() //
+      .then((videos) => setVideos(videos));
   }, []);
-  return <VideoList videos={videos} />;
+  return (
+    <div className={styles.app}>
+      <Searchbar onSearch={search} />
+      <VideoList videos={videos} />
+    </div>
+  );
 }
 
 export default App;
