@@ -5,6 +5,7 @@ const Searchbar = ({ onSearch }) => {
   const inputRef = useRef();
   const handleSearch = () => {
     const value = inputRef.current.value;
+
     onSearch(value);
   };
   const onClick = () => {
