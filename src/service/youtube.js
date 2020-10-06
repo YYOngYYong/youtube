@@ -1,5 +1,3 @@
-const { default: Searchbar } = require("../components/searchbar/searchbar");
-
 class Youtube {
   constructor(key) {
     this.key = key;
