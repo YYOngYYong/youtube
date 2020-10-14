@@ -7,6 +7,8 @@ const Searchbar = ({ onSearch }) => {
     const value = inputRef.current.value;
 
     onSearch(value);
+    
+    
   };
   const onClick = () => {
     handleSearch();
@@ -15,12 +17,20 @@ const Searchbar = ({ onSearch }) => {
   const onKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearch();
+      
+      
     }
   };
 
+  const goHome = ()=>{
+    onSearch('');
+  }
+
+ 
+
   return (
     <header className={styles.container}>
-      <div className={styles.logo}>
+      <div className={styles.logo} onClick={goHome} >
         <img className={styles.img} src="/images/logo.png" alt="logo" />
         <h1 className={styles.title}>Youtube</h1>
       </div>

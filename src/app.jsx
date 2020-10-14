@@ -20,6 +20,11 @@ function App({ youtube }) {
         setSelectedVideo(null);
       });
   };
+
+  const goHome = ()=>{
+    setSelectedVideo(null);
+    console.log('click');
+  }
   useEffect(() => {
     youtube
       .mostPopular() //
@@ -27,7 +32,7 @@ function App({ youtube }) {
   }, [youtube]);
   return (
     <div className={styles.app}>
-      <Searchbar onSearch={search} />
+      <Searchbar onSearch={search}  onCLick = {goHome}/>
       <section className={styles.content}>
         {selectedVideo && (
           <div className={styles.detail}>
